@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "terminal-table"
 require "uri"
 require "pg"
 require "ruby_pg_extras/size_parser"
@@ -69,7 +68,7 @@ module RubyPgExtras
     define_singleton_method query_name do |options = {}|
       run_query(
         query_name: query_name,
-        in_format: options.fetch(:in_format, :display_table),
+        in_format: options.fetch(:in_format, :hash),
         args: options.fetch(:args, {}),
       )
     end
@@ -118,7 +117,7 @@ module RubyPgExtras
     )
   end
 
-  def self.diagnose(in_format: :display_table)
+  def self.diagnose(in_format: :hash)
     data = RubyPgExtras::DiagnoseData.call
 
     if in_format == :display_table
@@ -132,7 +131,7 @@ module RubyPgExtras
     end
   end
 
-  def self.index_info(args: {}, in_format: :display_table)
+  def self.index_info(args: {}, in_format: :hash)
     data = RubyPgExtras::IndexInfo.call(args[:table_name])
 
     if in_format == :display_table
@@ -146,7 +145,7 @@ module RubyPgExtras
     end
   end
 
-  def self.table_info(args: {}, in_format: :display_table)
+  def self.table_info(args: {}, in_format: :hash)
     data = RubyPgExtras::TableInfo.call(args[:table_name])
 
     if in_format == :display_table
@@ -160,11 +159,11 @@ module RubyPgExtras
     end
   end
 
-  def self.missing_fk_indexes(args: {}, in_format: :display_table)
+  def self.missing_fk_indexes(args: {}, in_format: :hash)
     RubyPgExtras::MissingFkIndexes.call(args[:table_name])
   end
 
-  def self.missing_fk_constraints(args: {}, in_format: :display_table)
+  def self.missing_fk_constraints(args: {}, in_format: :hash)
     RubyPgExtras::MissingFkConstraints.call(args[:table_name])
   end
 
@@ -183,11 +182,7 @@ module RubyPgExtras
           ["No results"]
         end
 
-      puts Terminal::Table.new(
-        title: title,
-        headings: headings,
-        rows: (result.try(:values) || result.map(&:values)),
-      )
+      puts "Table display is removed because of constants definition clash"
     else
       raise "Invalid in_format option"
     end

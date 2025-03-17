@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "terminal-table"
-
 module RubyPgExtras
   class DiagnosePrint
     def self.call(data)
@@ -21,10 +19,7 @@ module RubyPgExtras
         ]
       end
 
-      puts Terminal::Table.new(
-        title: title,
-        rows: rows,
-      )
+      puts "Table display is removed because of constants definition clash"
     end
 
     private
