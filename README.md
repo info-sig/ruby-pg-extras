@@ -1,3 +1,6 @@
+### This Fork vs original repo?
+- this fork is created in order to prevent conflicts where Terminal constant is already defined in the project and where table display is not necessary.
+
 # Ruby PG Extras [![Gem Version](https://badge.fury.io/rb/ruby-pg-extras.svg)](https://badge.fury.io/rb/ruby-pg-extras) [![GH Actions](https://github.com/pawurb/ruby-pg-extras/actions/workflows/ci.yml/badge.svg)](https://github.com/pawurb/ruby-pg-extras/actions)
 
 Ruby port of [Heroku PG Extras](https://github.com/heroku/heroku-pg-extras) with several additions and improvements. The goal of this project is to provide powerful insights into the PostgreSQL database for Ruby apps that are not using the Heroku PostgreSQL plugin.
